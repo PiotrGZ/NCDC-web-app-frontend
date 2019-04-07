@@ -7,7 +7,7 @@
     <meta name="keywords" content=”html,javascript,css”>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" th:href="style.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}" />
 
 
 </head>
@@ -21,28 +21,30 @@
     </nav>
 </header>
 <main>
-    <form action="#" th:action="@{post}" th:object="${book}" method="post">
-        <table>
-            <tr><h3>Add Book</h3></tr>
-            <tr>
-                <td>ISBN</td>
-                <td><input type="text" th:field="*{isbn}"/></td>
-            </tr>
-            <tr>
-                <td>Author first name</td>
-                <td><input type="text" th:field="*{authorFirstName}"/></td>
-            </tr>
-            <tr>
-                <td>Author last name</td>
-                <td><input type="text" th:field="*{authorLastName}"/></td>
-            </tr>
-            <tr>
-                <td>Book Title</td>
-                <td><input type="text" th:field="*{title}"/></td>
-            </tr>
-        </table>
-        <input type="submit" value="Zapisz"/>
-    </form>
+    <section id="description">
+        <form action="#" th:action="@{post}" th:object="${book}" method="post">
+            <table>
+                <tr><h3>Add Book</h3></tr>
+                <tr>
+                    <td>ISBN</td>
+                    <td><input type="text" th:field="*{isbn}"/></td>
+                </tr>
+                <tr>
+                    <td>Author first name</td>
+                    <td><input type="text" th:field="*{authorFirstName}"/></td>
+                </tr>
+                <tr>
+                    <td>Author last name</td>
+                    <td><input type="text" th:field="*{authorLastName}"/></td>
+                </tr>
+                <tr>
+                    <td>Book Title</td>
+                    <td><input type="text" th:field="*{title}"/></td>
+                </tr>
+            </table>
+            <input type="submit" value="Submit"/>
+        </form>
+    </section>
 </main>
 <footer class="background-blue">
     <p>Copyright &copy;2019 Piotr Goetz</p>

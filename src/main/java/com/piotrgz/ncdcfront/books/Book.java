@@ -1,9 +1,20 @@
 package com.piotrgz.ncdcfront.books;
 
+import org.hibernate.validator.constraints.ISBN;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
 public class Book {
+    @ISBN(message = "Please enter valid ISBN-13 number")
     private String isbn;
+    @NotBlank
+    @Pattern(regexp = "A.*", message = "Author name must starts with A")
     private String authorFirstName;
+    @NotBlank
+    @Pattern(regexp = "A.*", message = "Author name must starts with A")
     private String authorLastName;
+    @NotBlank(message = "title cannot be blank")
     private String title;
 
     public String getIsbn() {

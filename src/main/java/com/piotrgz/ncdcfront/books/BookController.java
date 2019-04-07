@@ -26,8 +26,10 @@ public class BookController {
         ResponseEntity<List<Book>> response = restTemplate.exchange(config.getBaseUrl() + "books", HttpMethod.GET, null, new ParameterizedTypeReference<List<Book>>() {
         });
         List<Book> employees = response.getBody();
-        modelAndView.addObject("books", employees);
-        return modelAndView;
+        if(!employees.isEmpty()) {
+            modelAndView.addObject("books", employees);
+            return modelAndView;
+        }else return new ModelAndView("homeEmptyList");
     }
 
     @GetMapping("/add")
@@ -38,7 +40,14 @@ public class BookController {
     @PostMapping("/post")
     public ModelAndView postBook(@ModelAttribute Book book) {
         restTemplate.postForLocation(config.getBaseUrl() + "books", book);
-        return new ModelAndView("home");
+        ModelAndView modelAndView = new ModelAndView("home");
+        ResponseEntity<List<Book>> response = restTemplate.exchange(config.getBaseUrl() + "books", HttpMethod.GET, null, new ParameterizedTypeReference<List<Book>>() {
+        });
+        List<Book> employees = response.getBody();
+        if(!employees.isEmpty()) {
+            modelAndView.addObject("books", employees);
+            return modelAndView;
+        }else return new ModelAndView("homeEmptyList");
     }
 }
 
